@@ -14,20 +14,20 @@ class LoginViewController: UIViewController {
     @IBOutlet weak var passwordTextField: UITextField!
     
     
-    
-    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         //transparent navbar
         self.navigationController!.navigationBar.setBackgroundImage(UIImage(), for: .default)
         self.navigationController!.navigationBar.isTranslucent = true
         
-        //        emailTextField.delegate = self as? UITextFieldDelegate
-        //        self.passwordTextField.becomeFirstResponder()
-        
+        //add observers for keyboard
+        NotificationCenter.default.addObserver(self, selector: #selector(LoginViewController.keyboardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(LoginViewController.keyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
         
     }
     
+    //MARK: - handling login keyboard
     
     //hide keyboard by tap out of text field
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
@@ -35,7 +35,25 @@ class LoginViewController: UIViewController {
         super.touchesBegan(touches, with: event)
     }
     
+    //show keyboard and scroll view up
+    @objc func keyboardWillShow(notification: NSNotification) {
+        guard let userInfo = notification.userInfo else {return}
+        guard let keyboardSize = userInfo[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue else {return}
+        let keyboardFrame = keyboardSize.cgRectValue
+        if self.view.frame.origin.y == 0 {
+            self.view.frame.origin.y -= keyboardFrame.height
+        }
+    }
     
+    // hide keyboard and scroll view down
+    @objc func keyboardWillHide(notification: NSNotification) {
+        if self.view.frame.origin.y != 0 {
+            self.view.frame.origin.y = 0
+        }
+    }
+    
+   
+
     @IBAction func LoginButton(_ sender: Any) {
         
     }
