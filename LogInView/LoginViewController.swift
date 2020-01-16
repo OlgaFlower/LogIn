@@ -22,16 +22,19 @@ class LoginViewController: UIViewController {
         self.navigationController!.navigationBar.setBackgroundImage(UIImage(), for: .default)
         self.navigationController!.navigationBar.isTranslucent = true
         
-        emailTextField.delegate = self as? UITextFieldDelegate
-        passwordTextField.delegate = self as? UITextFieldDelegate
+        //        emailTextField.delegate = self as? UITextFieldDelegate
+        //        self.passwordTextField.becomeFirstResponder()
+        
+        
     }
     
-    func focusTxtField() {
-        self.emailTextField.becomeFirstResponder()
-        self.passwordTextField.becomeFirstResponder()
+    
+    //hide keyboard by tap out of text field
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        view.endEditing(true)
+        super.touchesBegan(touches, with: event)
     }
     
-   
     
     @IBAction func LoginButton(_ sender: Any) {
         
