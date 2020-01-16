@@ -33,16 +33,14 @@
                                     <action selector="joinCommunityButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="iix-ua-Jwh"/>
                                 </connections>
                             </button>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="SVd-zj-fKo">
-                                <rect key="frame" x="37.5" y="344" width="300" height="152"/>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="Iyy-LF-nav">
+                                <rect key="frame" x="37" y="380" width="300" height="152"/>
                                 <subviews>
                                     <textField opaque="NO" alpha="0.65000000000000002" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Email" borderStyle="bezel" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Hsh-AB-d7o">
                                         <rect key="frame" x="0.0" y="0.0" width="300" height="44"/>
                                         <color key="backgroundColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="44" id="JGr-Yz-Q1o"/>
-                                            <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="44" id="JRC-aj-4XN"/>
-                                            <constraint firstAttribute="width" constant="300" id="bz8-O4-FXZ"/>
                                         </constraints>
                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <fontDescription key="fontDescription" name=".AppleSystemUIFont" family=".AppleSystemUIFont" pointSize="16"/>
@@ -80,33 +78,21 @@
                                         </connections>
                                     </button>
                                 </subviews>
-                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <constraints>
-                                    <constraint firstAttribute="trailing" secondItem="Hsh-AB-d7o" secondAttribute="trailing" id="755-MH-lvl"/>
-                                    <constraint firstAttribute="bottom" secondItem="PI9-Zj-NYI" secondAttribute="bottom" id="C2n-3S-pCh"/>
-                                    <constraint firstItem="XIj-dR-ofU" firstAttribute="top" secondItem="Hsh-AB-d7o" secondAttribute="bottom" constant="10" id="DNM-HA-T0E"/>
-                                    <constraint firstItem="XIj-dR-ofU" firstAttribute="leading" secondItem="SVd-zj-fKo" secondAttribute="leading" id="EoI-bg-7pS"/>
-                                    <constraint firstAttribute="trailing" secondItem="XIj-dR-ofU" secondAttribute="trailing" id="GRR-6d-rtm"/>
-                                    <constraint firstItem="Hsh-AB-d7o" firstAttribute="top" secondItem="SVd-zj-fKo" secondAttribute="top" id="J0z-bb-t4U"/>
-                                    <constraint firstItem="Hsh-AB-d7o" firstAttribute="leading" secondItem="SVd-zj-fKo" secondAttribute="leading" id="Jc9-WR-o4S"/>
-                                    <constraint firstItem="PI9-Zj-NYI" firstAttribute="leading" secondItem="SVd-zj-fKo" secondAttribute="leading" id="O6v-so-WJq"/>
-                                    <constraint firstItem="PI9-Zj-NYI" firstAttribute="top" secondItem="XIj-dR-ofU" secondAttribute="bottom" constant="10" id="eKV-b4-Q2t"/>
-                                    <constraint firstAttribute="trailing" secondItem="PI9-Zj-NYI" secondAttribute="trailing" id="qFx-CM-ysW"/>
-                                </constraints>
-                            </view>
+                            </stackView>
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="bCf-Cg-UMW" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="2PO-ve-qcn"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="bCf-Cg-UMW" secondAttribute="trailing" id="9wX-GF-A6m"/>
                             <constraint firstItem="1tq-x1-e8c" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="AYL-Or-Tg8"/>
-                            <constraint firstItem="SVd-zj-fKo" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="Aiq-fX-Ud2"/>
                             <constraint firstAttribute="bottom" secondItem="1tq-x1-e8c" secondAttribute="bottom" id="F0y-Qx-yWc"/>
+                            <constraint firstAttribute="bottomMargin" secondItem="Iyy-LF-nav" secondAttribute="bottom" constant="135" id="LLq-Ry-F8w"/>
+                            <constraint firstItem="Iyy-LF-nav" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="37" id="M8V-7M-cws"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="Iyy-LF-nav" secondAttribute="trailing" constant="38" id="Q0p-Oe-Vvk"/>
                             <constraint firstAttribute="bottom" secondItem="bCf-Cg-UMW" secondAttribute="bottom" id="Txf-Bd-646"/>
                             <constraint firstItem="bCf-Cg-UMW" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="YJP-6Y-xg5"/>
                             <constraint firstItem="1tq-x1-e8c" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="c8H-cF-Pfh"/>
                             <constraint firstItem="1tq-x1-e8c" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="cJx-CS-Idl"/>
-                            <constraint firstItem="SVd-zj-fKo" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="300" id="iIB-We-bSx"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="OtG-69-FpA" secondAttribute="bottom" constant="20" id="s9G-hp-EbK"/>
                             <constraint firstItem="OtG-69-FpA" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="vs2-Xz-XHO"/>
                         </constraints>

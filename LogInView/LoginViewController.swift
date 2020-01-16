@@ -21,8 +21,17 @@ class LoginViewController: UIViewController {
         //transparent navbar
         self.navigationController!.navigationBar.setBackgroundImage(UIImage(), for: .default)
         self.navigationController!.navigationBar.isTranslucent = true
+        
+        emailTextField.delegate = self as? UITextFieldDelegate
+        passwordTextField.delegate = self as? UITextFieldDelegate
     }
     
+    func focusTxtField() {
+        self.emailTextField.becomeFirstResponder()
+        self.passwordTextField.becomeFirstResponder()
+    }
+    
+   
     
     @IBAction func LoginButton(_ sender: Any) {
         
