@@ -13,6 +13,7 @@ class LoginViewController: UIViewController {
     @IBOutlet weak var emailTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
     
+    var passwordIsValid: Bool?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -29,9 +30,10 @@ class LoginViewController: UIViewController {
         NotificationCenter.default.addObserver(self, selector: #selector(LoginViewController.keyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
         
         
+        
     }
     
-    //MARK: - handling login keyboard
+    //MARK: - handle login keyboard
     
     //hide keyboard by tap out of text field
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
@@ -56,23 +58,32 @@ class LoginViewController: UIViewController {
         }
     }
     
+   //MARK: - Validation
+    
+    func valid() {
+        if Validation.password(passwordTextField.text!) {
+            print("Valid")
+        } else {
+            print ("Invalid")
+        }
+    }
    
 
     @IBAction func LoginButton(_ sender: Any) {
         
     }
     
-    @IBAction func joinCommunityButton(_ sender: Any) {
-    }
+    @IBAction func joinCommunityButton(_ sender: Any) {}
     
 
 }
 
 
 extension LoginViewController: UITextFieldDelegate {
-       //hide keyboard by click on "done"/"return" button
-       func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-           textField.resignFirstResponder()
-           return true
-       }
+    //hide keyboard by click on "done"/"return" button
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        valid()
+        return true
+    }
 }
