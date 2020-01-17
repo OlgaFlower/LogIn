@@ -21,9 +21,13 @@ class LoginViewController: UIViewController {
         self.navigationController!.navigationBar.setBackgroundImage(UIImage(), for: .default)
         self.navigationController!.navigationBar.isTranslucent = true
         
+        emailTextField.delegate = self
+        passwordTextField.delegate = self
+        
         //add observers for keyboard
         NotificationCenter.default.addObserver(self, selector: #selector(LoginViewController.keyboardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(LoginViewController.keyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
+        
         
     }
     
@@ -62,4 +66,13 @@ class LoginViewController: UIViewController {
     }
     
 
+}
+
+
+extension LoginViewController: UITextFieldDelegate {
+       //hide keyboard by click on "done"/"return" button
+       func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+           textField.resignFirstResponder()
+           return true
+       }
 }
