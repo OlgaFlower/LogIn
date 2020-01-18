@@ -12,7 +12,7 @@ class Validation {
     
     static func passValidator(_ pass: String) -> Bool {
         
-        if pass.count >= 5, pass.count <= 20 {
+        if pass.count <= 20 {
             
             let special = CharacterSet(charactersIn: "!@#$%^&*()-+")
             let number = CharacterSet(charactersIn: "0123456789")
@@ -36,4 +36,12 @@ class Validation {
         }
         return true
     }
+    
+    
+    static func emailValidator(_ email: String) -> Bool {
+        
+        
+        return true
+    }
+    
 }
