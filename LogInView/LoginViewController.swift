@@ -67,43 +67,15 @@ class LoginViewController: UIViewController {
     
     
     @objc func textFieldDidChange(_ textField: UITextField) {
-        if passValidator(passwordTextField.text!) == true {
-            print("valid pass")
+        if Validation.passValidator(passwordTextField.text!) == true {
+            print("valid pass \(passwordTextField.text!)")
         } else {
-            print("invalid pass")
+            print("invalid pass \(passwordTextField.text!)")
         }
 
     }
     
-    func passValidator(_ pass: String) -> Bool {
-        
-        if pass.count >= 5, pass.count <= 20 {
-            
-            let special = CharacterSet(charactersIn: "!@#$%^&*()-+")
-            let number = CharacterSet(charactersIn: "0123456789")
-            let upper = CharacterSet(charactersIn: "ABCDEFGHIJKLMNOPQRSTUVWXYZ")
-            let lower = CharacterSet(charactersIn: "abcdefghijklmnopqrstuvwxyz")
-            
-            if pass.rangeOfCharacter(from: lower) == nil {
-                return false
-            }
-            if pass.rangeOfCharacter(from: upper) == nil {
-                return false
-            }
-            if pass.rangeOfCharacter(from: number) == nil {
-                return false
-            }
-            if pass.rangeOfCharacter(from: special) == nil {
-                return false
-            }
-            print("Valid password \(pass)")
-            
-        } else {
-            print("Not valid password \(pass)")
-            return false
-        }
-        return true
-    }
+    
     
 
     @IBAction func LoginButton(_ sender: Any) {
