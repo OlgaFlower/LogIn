@@ -31,10 +31,7 @@ class Validation {
             if pass.rangeOfCharacter(from: special) == nil {
                 return false
             }
-            print("Valid password \(pass)")
-            
         } else {
-            print("Not valid password \(pass)")
             return false
         }
         return true

@@ -67,12 +67,15 @@ class LoginViewController: UIViewController {
     
     
     @objc func textFieldDidChange(_ textField: UITextField) {
-        if Validation.passValidator(passwordTextField.text!) == true {
-            print("valid pass \(passwordTextField.text!)")
-        } else {
-            print("invalid pass \(passwordTextField.text!)")
+        
+        if passwordTextField.text!.count >= 5 {
+            if Validation.passValidator(passwordTextField.text!) == true {
+                print("valid pass \(passwordTextField.text!)")
+            } else {
+                print("invalid pass \(passwordTextField.text!)")
+            }
         }
-
+        
     }
     
     
