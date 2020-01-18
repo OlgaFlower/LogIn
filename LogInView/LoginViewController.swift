@@ -10,10 +10,12 @@ import UIKit
 
 class LoginViewController: UIViewController {
     
+    
+    
     @IBOutlet weak var emailTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
+    @IBOutlet weak var loginButton: UIButton!
     
-    var passwordIsValid: Bool?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -29,7 +31,10 @@ class LoginViewController: UIViewController {
         NotificationCenter.default.addObserver(self, selector: #selector(LoginViewController.keyboardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(LoginViewController.keyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
         
+        loginButton.isEnabled = false
         
+        passwordTextField.addTarget(self, action: #selector(LoginViewController.textFieldDidChange(_:)), for: .editingChanged)
+        emailTextField.addTarget(self, action: #selector(LoginViewController.textFieldDidChange(_:)), for: .editingChanged)
         
     }
     
@@ -60,14 +65,46 @@ class LoginViewController: UIViewController {
     
    //MARK: - Validation
     
-    func valid() {
-        if Validation.password(passwordTextField.text!) {
-            print("Valid")
+    
+    @objc func textFieldDidChange(_ textField: UITextField) {
+        if passValidator(passwordTextField.text!) == true {
+            print("valid pass")
         } else {
-            print ("Invalid")
+            print("invalid pass")
         }
+
     }
-   
+    
+    func passValidator(_ pass: String) -> Bool {
+        
+        if pass.count >= 5, pass.count <= 20 {
+            
+            let special = CharacterSet(charactersIn: "!@#$%^&*()-+")
+            let number = CharacterSet(charactersIn: "0123456789")
+            let upper = CharacterSet(charactersIn: "ABCDEFGHIJKLMNOPQRSTUVWXYZ")
+            let lower = CharacterSet(charactersIn: "abcdefghijklmnopqrstuvwxyz")
+            
+            if pass.rangeOfCharacter(from: lower) == nil {
+                return false
+            }
+            if pass.rangeOfCharacter(from: upper) == nil {
+                return false
+            }
+            if pass.rangeOfCharacter(from: number) == nil {
+                return false
+            }
+            if pass.rangeOfCharacter(from: special) == nil {
+                return false
+            }
+            print("Valid password \(pass)")
+            
+        } else {
+            print("Not valid password \(pass)")
+            return false
+        }
+        return true
+    }
+    
 
     @IBAction func LoginButton(_ sender: Any) {
         
@@ -83,7 +120,6 @@ extension LoginViewController: UITextFieldDelegate {
     //hide keyboard by click on "done"/"return" button
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         textField.resignFirstResponder()
-        valid()
         return true
     }
 }
