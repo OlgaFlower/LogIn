@@ -95,11 +95,8 @@ class LoginViewController: UIViewController {
     
     
 
-    @IBAction func LoginButton(_ sender: Any) {
-        
-    }
-    
-    @IBAction func joinCommunityButton(_ sender: Any) {}
+    @IBAction func LoginButton(_ sender: Any) { }
+    @IBAction func joinCommunityButton(_ sender: Any) { }
     
 
 }

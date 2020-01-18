@@ -30,8 +30,6 @@ class Validation {
             if pass.rangeOfCharacter(from: special) == nil {
                 return false
             }
-        } else {
-            return false
         }
         return true
     }
@@ -48,10 +46,11 @@ class Validation {
             if email.rangeOfCharacter(from: point) == nil {
                 return false
             }
-        } else {
-            return false
+            if let range = email.range(of: ".") {
+                let afterPointChars = email[range.upperBound...]
+                if afterPointChars.count < 2 { return false }
+            }
         }
-        
         return true
     }
     
