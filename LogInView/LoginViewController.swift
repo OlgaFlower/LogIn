@@ -67,26 +67,24 @@ class LoginViewController: UIViewController {
     
     
     @objc func textFieldDidChange(_ textField: UITextField) {
+        
         loginButton.isEnabled = false
         let minLength = 5
         var passValid = false
         var emailValid = false
         
         if passwordTextField.text!.count >= minLength {
-            
             if Validation.passValidator(passwordTextField.text!) == true {
                 print("valid pass \(passwordTextField.text!)")
                 passValid = true
-            } else {
-                print("invalid pass \(passwordTextField.text!)")
             }
         }
         
         if emailTextField.text!.count >= minLength {
-            print("valid email \(emailTextField.text!)")
-            emailValid = true
-        } else {
-            print("invalid email \(emailTextField.text!)")
+            if Validation.emailValidator(emailTextField.text!) == true {
+                print("valid email \(emailTextField.text!)")
+                emailValid = true
+            }
         }
         
         if passValid == true, emailValid == true {

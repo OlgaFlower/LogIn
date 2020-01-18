@@ -11,7 +11,6 @@ import Foundation
 class Validation {
     
     static func passValidator(_ pass: String) -> Bool {
-        
         if pass.count <= 20 {
             
             let special = CharacterSet(charactersIn: "!@#$%^&*()-+")
@@ -39,7 +38,19 @@ class Validation {
     
     
     static func emailValidator(_ email: String) -> Bool {
+        let symbolAt = CharacterSet(charactersIn: "@")
+        let point = CharacterSet(charactersIn: ".")
         
+        if email.count <= 25 {
+            if email.rangeOfCharacter(from: symbolAt) == nil {
+                return false
+            }
+            if email.rangeOfCharacter(from: point) == nil {
+                return false
+            }
+        } else {
+            return false
+        }
         
         return true
     }
