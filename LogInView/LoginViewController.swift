@@ -10,12 +10,9 @@ import UIKit
 
 class LoginViewController: UIViewController {
     
-    
-    
     @IBOutlet weak var emailTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
     @IBOutlet weak var loginButton: UIButton!
-    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -31,14 +28,11 @@ class LoginViewController: UIViewController {
         NotificationCenter.default.addObserver(self, selector: #selector(LoginViewController.keyboardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(LoginViewController.keyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
         
-        
-        
         passwordTextField.addTarget(self, action: #selector(LoginViewController.textFieldDidChange(_:)), for: .editingChanged)
         emailTextField.addTarget(self, action: #selector(LoginViewController.textFieldDidChange(_:)), for: .editingChanged)
-        
     }
     
-    //MARK: - handle login keyboard
+    //MARK: - Handle soft keyboard
     
     //hide keyboard by tap out of text field
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
@@ -65,9 +59,7 @@ class LoginViewController: UIViewController {
     
    //MARK: - Validation
     
-    
     @objc func textFieldDidChange(_ textField: UITextField) {
-        
         loginButton.isEnabled = false
         let minLength = 5
         var passValid = false
@@ -75,14 +67,12 @@ class LoginViewController: UIViewController {
         
         if passwordTextField.text!.count >= minLength {
             if Validation.passValidator(passwordTextField.text!) == true {
-                print("valid pass \(passwordTextField.text!)")
                 passValid = true
             }
         }
         
         if emailTextField.text!.count >= minLength {
             if Validation.emailValidator(emailTextField.text!) == true {
-                print("valid email \(emailTextField.text!)")
                 emailValid = true
             }
         }
@@ -94,11 +84,10 @@ class LoginViewController: UIViewController {
     
     
     
-
+    //MARK: - Actions
     @IBAction func LoginButton(_ sender: Any) { }
     @IBAction func joinCommunityButton(_ sender: Any) { }
     
-
 }
 
 

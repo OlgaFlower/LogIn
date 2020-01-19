@@ -54,6 +54,20 @@ class Validation {
                 let afterPointChars = email[range.upperBound...]
                 if afterPointChars.count < 2 { return false }
             }
+            if repeatingSymbol(email) == false {
+                return false
+            }
+        }
+        return true
+    }
+    
+    
+    static func repeatingSymbol(_ email: String) -> Bool {
+        let temp = email.sorted()
+        for i in 0 ..< temp.count - 1 {
+            if temp[i] == "@" || temp[i] == ".", temp[i] == temp[i + 1] {
+                return false
+            }
         }
         return true
     }
