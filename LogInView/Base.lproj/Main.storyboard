@@ -74,7 +74,7 @@
                                             </attributedString>
                                         </state>
                                         <connections>
-                                            <action selector="LoginButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="98B-Rx-96w"/>
+                                            <action selector="logInButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="tl4-NN-m7R"/>
                                         </connections>
                                     </button>
                                 </subviews>
