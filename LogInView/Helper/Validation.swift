@@ -17,6 +17,7 @@ class Validation {
             let number = CharacterSet(charactersIn: "0123456789")
             let upper = CharacterSet(charactersIn: "ABCDEFGHIJKLMNOPQRSTUVWXYZ")
             let lower = CharacterSet(charactersIn: "abcdefghijklmnopqrstuvwxyz")
+            let restricted = CharacterSet(charactersIn: #",./:;<=>?[\]“‘“"_`{|}~ "#)
             
             if pass.rangeOfCharacter(from: lower) == nil {
                 return false
@@ -28,6 +29,9 @@ class Validation {
                 return false
             }
             if pass.rangeOfCharacter(from: special) == nil {
+                return false
+            }
+            if pass.rangeOfCharacter(from: restricted) != nil {
                 return false
             }
         }
