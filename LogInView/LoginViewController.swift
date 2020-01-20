@@ -25,6 +25,9 @@ class LoginViewController: UIViewController {
         emailTextField.delegate = self
         passwordTextField.delegate = self
         
+        loginButton.isEnabled = false
+//        textfieldStackView.layoutIfNeeded()
+        
         //add observers for keyboard
         NotificationCenter.default.addObserver(self, selector: #selector(LoginViewController.keyboardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(LoginViewController.keyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
@@ -45,9 +48,11 @@ class LoginViewController: UIViewController {
     @objc func keyboardWillShow(notification: NSNotification) {
         guard let userInfo = notification.userInfo else {return}
         guard let keyboardSize = userInfo[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue else {return}
+        
        
         let keyboardFrame = keyboardSize.cgRectValue
         if self.view.frame.origin.y == 0 {
+            
             self.view.frame.origin.y -= (keyboardFrame.height - 100)
         }
     }
@@ -65,7 +70,7 @@ class LoginViewController: UIViewController {
    //MARK: - Validation
     
     @objc func textFieldDidChange(_ textField: UITextField) {
-        loginButton.isEnabled = false
+//        loginButton.isEnabled = false
         let minLength = 5
         var passValid = false
         var emailValid = false
