@@ -13,6 +13,7 @@ class LoginViewController: UIViewController {
     @IBOutlet weak var emailTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
     @IBOutlet weak var loginButton: UIButton!
+    @IBOutlet weak var textfieldStackView: UIStackView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -44,11 +45,13 @@ class LoginViewController: UIViewController {
     @objc func keyboardWillShow(notification: NSNotification) {
         guard let userInfo = notification.userInfo else {return}
         guard let keyboardSize = userInfo[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue else {return}
+       
         let keyboardFrame = keyboardSize.cgRectValue
         if self.view.frame.origin.y == 0 {
-            self.view.frame.origin.y -= keyboardFrame.height
+            self.view.frame.origin.y -= (keyboardFrame.height - 100)
         }
     }
+    
     
     // hide keyboard and scroll view down
     @objc func keyboardWillHide(notification: NSNotification) {
@@ -56,6 +59,8 @@ class LoginViewController: UIViewController {
             self.view.frame.origin.y = 0
         }
     }
+    
+
     
    //MARK: - Validation
     
@@ -99,3 +104,6 @@ extension LoginViewController: UITextFieldDelegate {
         return true
     }
 }
+
+
+
