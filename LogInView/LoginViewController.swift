@@ -15,6 +15,8 @@ class LoginViewController: UIViewController {
     @IBOutlet weak var loginButton: UIButton!
     @IBOutlet weak var showHidePassButton: UIButton!
     
+    var passIsHidden = true
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -25,9 +27,14 @@ class LoginViewController: UIViewController {
         emailTextField.delegate = self
         passwordTextField.delegate = self
         
+        //secure pass is true
+        passwordTextField.isSecureTextEntry = true
+        showHidePassButton.setImage(UIImage(systemName: "eye.slash"), for: .normal)
+        
         passwordTextField.isHidden = true
         showHidePassButton.isHidden = true
         loginButton.isHidden = true
+        
         
         //textfield padding
         emailTextField.setLeftPaddingPoints(8)
@@ -116,7 +123,17 @@ class LoginViewController: UIViewController {
     
     @IBAction func logInButton(_ sender: Any) { }
     @IBAction func joinCommunityButton(_ sender: Any) { }
-    @IBAction func showHideButton(_ sender: Any) { }
+    
+    @IBAction func showHideButton(_ sender: Any) {
+        if(passIsHidden == false) {
+            passwordTextField.isSecureTextEntry = false
+            showHidePassButton.setImage(UIImage(systemName: "eye"), for: .normal)
+        } else {
+            passwordTextField.isSecureTextEntry = true
+            showHidePassButton.setImage(UIImage(systemName: "eye.slash"), for: .normal)
+        }
+        passIsHidden = !passIsHidden
+    }
     
 }
 

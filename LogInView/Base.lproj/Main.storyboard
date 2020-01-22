@@ -50,7 +50,7 @@
                                     <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gr8-EF-M1u">
                                         <rect key="frame" x="0.0" y="50" width="300" height="40"/>
                                         <subviews>
-                                            <textField opaque="NO" alpha="0.65000000000000002" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text=" Password" clearsOnBeginEditing="YES" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="XIj-dR-ofU">
+                                            <textField opaque="NO" alpha="0.65000000000000002" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" clearsOnBeginEditing="YES" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="XIj-dR-ofU">
                                                 <rect key="frame" x="0.0" y="0.0" width="270" height="40"/>
                                                 <color key="backgroundColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <constraints>
@@ -65,7 +65,6 @@
                                                 <rect key="frame" x="270" y="0.0" width="30" height="40"/>
                                                 <color key="backgroundColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                <state key="normal" image="eye" catalog="system"/>
                                                 <connections>
                                                     <action selector="showHideButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="HWR-JX-6Lj"/>
                                                 </connections>
@@ -148,7 +147,6 @@
         </scene>
     </scenes>
     <resources>
-        <image name="eye" catalog="system" width="64" height="40"/>
         <image name="lemon" width="564" height="817"/>
     </resources>
 </document>
