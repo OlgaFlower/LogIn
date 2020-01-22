@@ -79,7 +79,9 @@ class LoginViewController: UIViewController {
         if emailTextField.text!.count >= minLength {
             if Validation.emailValidator(emailTextField.text!) == true {
                 emailValid = true
-                passwordTextField.isHidden = false
+                UITextView.animate(withDuration: 0.5) {
+                    self.passwordTextField.isHidden = false
+                }
             }
         }
         
@@ -91,7 +93,9 @@ class LoginViewController: UIViewController {
         }
         
         if passValid == true, emailValid == true {
-            loginButton.isHidden = false
+            UITextView.animate(withDuration: 0.5) {
+                self.loginButton.isHidden = false
+            }
         }
     }
     
