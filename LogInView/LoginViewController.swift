@@ -25,15 +25,17 @@ class LoginViewController: UIViewController {
         emailTextField.delegate = self
         passwordTextField.delegate = self
         
-        loginButton.isEnabled = false
-//        textfieldStackView.layoutIfNeeded()
+        loginButton.isHidden = true
+        passwordTextField.isHidden = true
+         
+        passwordTextField.addTarget(self, action: #selector(LoginViewController.textFieldDidChange(_:)), for: .editingChanged)
+        emailTextField.addTarget(self, action: #selector(LoginViewController.textFieldDidChange(_:)), for: .editingChanged)
         
         //add observers for keyboard
         NotificationCenter.default.addObserver(self, selector: #selector(LoginViewController.keyboardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(LoginViewController.keyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
         
-        passwordTextField.addTarget(self, action: #selector(LoginViewController.textFieldDidChange(_:)), for: .editingChanged)
-        emailTextField.addTarget(self, action: #selector(LoginViewController.textFieldDidChange(_:)), for: .editingChanged)
+        
     }
     
     //MARK: - Handle soft keyboard
@@ -52,7 +54,6 @@ class LoginViewController: UIViewController {
        
         let keyboardFrame = keyboardSize.cgRectValue
         if self.view.frame.origin.y == 0 {
-            
             self.view.frame.origin.y -= (keyboardFrame.height - 100)
         }
     }
@@ -75,20 +76,22 @@ class LoginViewController: UIViewController {
         var passValid = false
         var emailValid = false
         
-        if passwordTextField.text!.count >= minLength {
-            if Validation.passValidator(passwordTextField.text!) == true {
-                passValid = true
-            }
-        }
-        
         if emailTextField.text!.count >= minLength {
             if Validation.emailValidator(emailTextField.text!) == true {
                 emailValid = true
+                passwordTextField.isHidden = false
+            }
+        }
+        
+        if passwordTextField.text!.count >= minLength {
+            if Validation.passValidator(passwordTextField.text!) == true {
+                passValid = true
+                
             }
         }
         
         if passValid == true, emailValid == true {
-            loginButton.isEnabled = true
+            loginButton.isHidden = false
         }
     }
     
