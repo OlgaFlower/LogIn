@@ -34,8 +34,9 @@ class Validation {
             if pass.rangeOfCharacter(from: restricted) != nil {
                 return false
             }
+            return true
         }
-        return true
+        return false
     }
     
     
@@ -54,11 +55,12 @@ class Validation {
                 let afterPointChars = email[range.upperBound...]
                 if afterPointChars.count < 2 { return false }
             }
-            if repeatingSymbol(email) == false {
+            if repeatingSymbol(email) == true {
                 return false
             }
+            return true
         }
-        return true
+        return false
     }
     
     
@@ -66,10 +68,12 @@ class Validation {
         let temp = email.sorted()
         for i in 0 ..< temp.count - 1 {
             if temp[i] == "@" || temp[i] == ".", temp[i] == temp[i + 1] {
-                return false
+                print("Check for @ and . --> invalid")
+                return true
             }
         }
-        return true
+        print("Check for @ and . --> valid")
+        return false
     }
     
 }

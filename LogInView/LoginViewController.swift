@@ -28,6 +28,12 @@ class LoginViewController: UIViewController {
         passwordTextField.isHidden = true
         showHidePassButton.isHidden = true
         loginButton.isHidden = true
+        
+        //textfield padding
+        emailTextField.setLeftPaddingPoints(8)
+        emailTextField.setRightPaddingPoints(8)
+        passwordTextField.setLeftPaddingPoints(8)
+        passwordTextField.setRightPaddingPoints(8)
          
         passwordTextField.addTarget(self, action: #selector(LoginViewController.textFieldDidChange(_:)), for: .editingChanged)
         emailTextField.addTarget(self, action: #selector(LoginViewController.textFieldDidChange(_:)), for: .editingChanged)
@@ -72,7 +78,6 @@ class LoginViewController: UIViewController {
    //MARK: - Validation
     
     @objc func textFieldDidChange(_ textField: UITextField) {
-//        loginButton.isEnabled = false
         let minLength = 5
         var passValid = false
         var emailValid = false
@@ -111,7 +116,7 @@ class LoginViewController: UIViewController {
     
 }
 
-
+//MARK: - Handle Done/Return button
 extension LoginViewController: UITextFieldDelegate {
     //hide keyboard by click on "done"/"return" button
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
@@ -121,4 +126,16 @@ extension LoginViewController: UITextFieldDelegate {
 }
 
 
-
+//MARK: - Textfield padding
+extension UITextField {
+    func setLeftPaddingPoints(_ amount:CGFloat){
+        let paddingView = UIView(frame: CGRect(x: 0, y: 0, width: amount, height: self.frame.size.height))
+        self.leftView = paddingView
+        self.leftViewMode = .always
+    }
+    func setRightPaddingPoints(_ amount:CGFloat) {
+        let paddingView = UIView(frame: CGRect(x: 0, y: 0, width: amount, height: self.frame.size.height))
+        self.rightView = paddingView
+        self.rightViewMode = .always
+    }
+}
