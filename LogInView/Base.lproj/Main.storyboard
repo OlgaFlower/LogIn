@@ -16,7 +16,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" alpha="0.84999999999999998" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="lemon" translatesAutoresizingMaskIntoConstraints="NO" id="1tq-x1-e8c">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="667.00000000000023"/>
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                             </imageView>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" alpha="0.10000000000000001" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="bCf-Cg-UMW">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
@@ -66,6 +66,9 @@
                                                 <color key="backgroundColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <state key="normal" image="eye" catalog="system"/>
+                                                <connections>
+                                                    <action selector="showHideButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="HWR-JX-6Lj"/>
+                                                </connections>
                                             </button>
                                         </subviews>
                                     </stackView>
@@ -118,6 +121,7 @@
                         <outlet property="emailTextField" destination="Hsh-AB-d7o" id="FZA-G1-TCt"/>
                         <outlet property="loginButton" destination="PI9-Zj-NYI" id="Vir-3W-5Eb"/>
                         <outlet property="passwordTextField" destination="XIj-dR-ofU" id="6Wf-R8-apD"/>
+                        <outlet property="showHidePassButton" destination="k68-rv-tDN" id="DdB-Gf-xMg"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>

@@ -13,6 +13,7 @@ class LoginViewController: UIViewController {
     @IBOutlet weak var emailTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
     @IBOutlet weak var loginButton: UIButton!
+    @IBOutlet weak var showHidePassButton: UIButton!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -24,8 +25,9 @@ class LoginViewController: UIViewController {
         emailTextField.delegate = self
         passwordTextField.delegate = self
         
-        loginButton.isHidden = true
         passwordTextField.isHidden = true
+        showHidePassButton.isHidden = true
+        loginButton.isHidden = true
          
         passwordTextField.addTarget(self, action: #selector(LoginViewController.textFieldDidChange(_:)), for: .editingChanged)
         emailTextField.addTarget(self, action: #selector(LoginViewController.textFieldDidChange(_:)), for: .editingChanged)
@@ -80,6 +82,7 @@ class LoginViewController: UIViewController {
                 emailValid = true
                 UITextView.animate(withDuration: 0.5) {
                     self.passwordTextField.isHidden = false
+                    self.showHidePassButton.isHidden = false
                 }
             }
         }
@@ -104,6 +107,7 @@ class LoginViewController: UIViewController {
     
     @IBAction func logInButton(_ sender: Any) { }
     @IBAction func joinCommunityButton(_ sender: Any) { }
+    @IBAction func showHideButton(_ sender: Any) { }
     
 }
 
