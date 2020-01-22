@@ -34,6 +34,10 @@ class LoginViewController: UIViewController {
         emailTextField.setRightPaddingPoints(8)
         passwordTextField.setLeftPaddingPoints(8)
         passwordTextField.setRightPaddingPoints(8)
+        
+        //prevent insertion of a word that is longer than available (by paste operation)
+        emailTextField.smartInsertDeleteType = UITextSmartInsertDeleteType.no
+        passwordTextField.smartInsertDeleteType = UITextSmartInsertDeleteType.no
          
         passwordTextField.addTarget(self, action: #selector(LoginViewController.textFieldDidChange(_:)), for: .editingChanged)
         emailTextField.addTarget(self, action: #selector(LoginViewController.textFieldDidChange(_:)), for: .editingChanged)
@@ -116,13 +120,34 @@ class LoginViewController: UIViewController {
     
 }
 
-//MARK: - Handle Done/Return button
+
+
+
 extension LoginViewController: UITextFieldDelegate {
+    
+    //MARK: - Handle Done/Return button
     //hide keyboard by click on "done"/"return" button
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         textField.resignFirstResponder()
         return true
     }
+    
+    //MARK: - Check email & password for max length
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        guard let textFieldText = textField.text, let rangeOfTextToReplace = Range(range, in: textFieldText) else { return false }
+        let substringToReplace = textFieldText[rangeOfTextToReplace]
+        let count = textFieldText.count - substringToReplace.count + string.count
+        switch textField {
+        case emailTextField:
+            return count <= 25
+        case passwordTextField:
+            return count <= 20
+        default:
+            return count <= 1
+        }
+    }
+    
+    
 }
 
 
@@ -139,3 +164,6 @@ extension UITextField {
         self.rightViewMode = .always
     }
 }
+
+
+

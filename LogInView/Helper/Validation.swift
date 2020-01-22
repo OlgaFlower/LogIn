@@ -6,19 +6,18 @@
 //  Copyright © 2020 Flower. All rights reserved.
 //
 
-import Foundation
+import UIKit
 
 class Validation {
     
     static func passValidator(_ pass: String) -> Bool {
-        if pass.count <= 20 {
             
             let special = CharacterSet(charactersIn: "!@#$%^&*()-+")
             let number = CharacterSet(charactersIn: "0123456789")
             let upper = CharacterSet(charactersIn: "ABCDEFGHIJKLMNOPQRSTUVWXYZ")
             let lower = CharacterSet(charactersIn: "abcdefghijklmnopqrstuvwxyz")
             let restricted = CharacterSet(charactersIn: #",./:;<=>?[\]“‘“"_`{|}~ "#)
-            
+
             if pass.rangeOfCharacter(from: lower) == nil {
                 return false
             }
@@ -34,9 +33,8 @@ class Validation {
             if pass.rangeOfCharacter(from: restricted) != nil {
                 return false
             }
-            return true
-        }
-        return false
+        
+        return true
     }
     
     
@@ -44,7 +42,6 @@ class Validation {
         let symbolAt = CharacterSet(charactersIn: "@")
         let point = CharacterSet(charactersIn: ".")
         
-        if email.count <= 25 {
             if email.rangeOfCharacter(from: symbolAt) == nil {
                 return false
             }
@@ -59,8 +56,6 @@ class Validation {
                 return false
             }
             return true
-        }
-        return false
     }
     
     
@@ -68,12 +63,11 @@ class Validation {
         let temp = email.sorted()
         for i in 0 ..< temp.count - 1 {
             if temp[i] == "@" || temp[i] == ".", temp[i] == temp[i + 1] {
-                print("Check for @ and . --> invalid")
                 return true
             }
         }
-        print("Check for @ and . --> valid")
         return false
     }
+    
     
 }
