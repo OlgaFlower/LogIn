@@ -16,6 +16,8 @@ class LoginViewController: UIViewController {
     @IBOutlet weak var showHidePassButton: UIButton!
     
     var passIsHidden = true
+    var password: String?
+    var email: String?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -26,6 +28,15 @@ class LoginViewController: UIViewController {
         
         emailTextField.delegate = self
         passwordTextField.delegate = self
+        
+        
+        
+        //****************************************
+        emailTextField.text = email
+        passwordTextField.text = password
+        
+        
+        
         
         //secure pass is true
         passwordTextField.isSecureTextEntry = true
@@ -93,6 +104,16 @@ class LoginViewController: UIViewController {
         var passValid = false
         var emailValid = false
         
+        
+        
+        
+       //****************************************
+        email = emailTextField.text
+        password = passwordTextField.text
+        
+        
+        
+        
         if emailTextField.text!.count >= minLength {
             if Validation.emailValidator(emailTextField.text!) == true {
                 emailValid = true
@@ -124,6 +145,7 @@ class LoginViewController: UIViewController {
     @IBAction func logInButton(_ sender: Any) { }
     @IBAction func joinCommunityButton(_ sender: Any) { }
     
+    //show/hide password
     @IBAction func showHideButton(_ sender: Any) {
         if(passIsHidden == false) {
             passwordTextField.isSecureTextEntry = false
@@ -146,6 +168,7 @@ extension LoginViewController: UITextFieldDelegate {
     //hide keyboard by click on "done"/"return" button
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         textField.resignFirstResponder()
+   
         return true
     }
     
@@ -164,6 +187,11 @@ extension LoginViewController: UITextFieldDelegate {
         }
     }
     
+    func textFieldShouldEndEditing(_ textField: UITextField) -> Bool {
+        emailTextField.text = email
+        passwordTextField.text = password
+        return true
+    }
     
 }
 
