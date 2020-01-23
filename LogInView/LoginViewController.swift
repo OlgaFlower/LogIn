@@ -28,16 +28,7 @@ class LoginViewController: UIViewController {
         
         emailTextField.delegate = self
         passwordTextField.delegate = self
-        
-        
-        
-        //****************************************
-        emailTextField.text = email
-        passwordTextField.text = password
-        
-        
-        
-        
+      
         //secure pass is true
         passwordTextField.isSecureTextEntry = true
         showHidePassButton.setImage(UIImage(systemName: "eye.slash"), for: .normal)
@@ -103,16 +94,6 @@ class LoginViewController: UIViewController {
         let minLength = 5
         var passValid = false
         var emailValid = false
-        
-        
-        
-        
-       //****************************************
-        email = emailTextField.text
-        password = passwordTextField.text
-        
-        
-        
         
         if emailTextField.text!.count >= minLength {
             if Validation.emailValidator(emailTextField.text!) == true {
@@ -187,12 +168,7 @@ extension LoginViewController: UITextFieldDelegate {
         }
     }
     
-    func textFieldShouldEndEditing(_ textField: UITextField) -> Bool {
-        emailTextField.text = email
-        passwordTextField.text = password
-        return true
-    }
-    
+
 }
 
 
