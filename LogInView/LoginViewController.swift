@@ -91,6 +91,7 @@ class LoginViewController: UIViewController {
    //MARK: - Validation
     
     @objc func textFieldDidChange(_ textField: UITextField) {
+        
         let minLength = 5
         var passValid = false
         var emailValid = false
@@ -153,22 +154,35 @@ extension LoginViewController: UITextFieldDelegate {
         return true
     }
     
-    //MARK: - Check email & password for max length
+    
+    
+    //MARK: - Check email & password for max length & prevent input restricted symbols
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
         guard let textFieldText = textField.text, let rangeOfTextToReplace = Range(range, in: textFieldText) else { return false }
         let substringToReplace = textFieldText[rangeOfTextToReplace]
         let count = textFieldText.count - substringToReplace.count + string.count
         switch textField {
         case emailTextField:
-            return count <= 25
+            return count <= 25 && preventInputRestrictedSymbols(string, textField)
         case passwordTextField:
-            return count <= 20
+            return count <= 20 && preventInputRestrictedSymbols(string, textField)
         default:
             return count <= 1
         }
     }
     
-
+    
+    func preventInputRestrictedSymbols(_ string: String, _ textField: UITextField) -> Bool {
+        switch textField {
+        case emailTextField:
+            return string.rangeOfCharacter(from: CharacterSet(charactersIn: #",/:;<=>?[\]“‘“"_`{'|}~ "#)) == nil
+        case passwordTextField:
+            return string.rangeOfCharacter(from: CharacterSet(charactersIn: #",./:;<=>?[\]“‘“"_`{'|}~ "#)) == nil
+        default:
+            return false
+        }
+    }
+        
 }
 
 

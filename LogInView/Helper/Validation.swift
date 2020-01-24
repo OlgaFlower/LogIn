@@ -16,7 +16,6 @@ class Validation {
             let number = CharacterSet(charactersIn: "0123456789")
             let upper = CharacterSet(charactersIn: "ABCDEFGHIJKLMNOPQRSTUVWXYZ")
             let lower = CharacterSet(charactersIn: "abcdefghijklmnopqrstuvwxyz")
-            let restricted = CharacterSet(charactersIn: #",./:;<=>?[\]“‘“"_`{|}~ "#)
 
             if pass.rangeOfCharacter(from: lower) == nil {
                 return false
@@ -28,9 +27,6 @@ class Validation {
                 return false
             }
             if pass.rangeOfCharacter(from: special) == nil {
-                return false
-            }
-            if pass.rangeOfCharacter(from: restricted) != nil {
                 return false
             }
         
@@ -48,26 +44,40 @@ class Validation {
             if email.rangeOfCharacter(from: point) == nil {
                 return false
             }
+        
+        
             if let range = email.range(of: ".") {
                 let afterPointChars = email[range.upperBound...]
                 if afterPointChars.count < 2 { return false }
             }
-            if repeatingSymbol(email) == true {
+            if isRepeatingSymbol(email) == true {
                 return false
             }
             return true
     }
     
     
-    static func repeatingSymbol(_ email: String) -> Bool {
+    static func isRepeatingSymbol(_ email: String) -> Bool {
         let temp = email.sorted()
         for i in 0 ..< temp.count - 1 {
-            if temp[i] == "@" || temp[i] == ".", temp[i] == temp[i + 1] {
+            if temp[i] == "@", temp[i] == temp[i + 1] {
                 return true
             }
         }
         return false
     }
     
+    
+    
+//    static func isPointAfterAt(_ email: String) -> Bool {
+////        let range: Range<String.Index> = text.range(of: "b")!
+////        let index: Int = text.distance(from: text.startIndex, to: range.lowerBound)
+//
+//        let startIndex = email.range(of: "@")
+//        print(startIndex)
+//
+//        return false
+//    }
+//
     
 }
