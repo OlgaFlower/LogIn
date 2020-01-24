@@ -28,7 +28,7 @@ class LoginViewController: UIViewController {
         
         emailTextField.delegate = self
         passwordTextField.delegate = self
-      
+        
         //secure pass is true
         passwordTextField.isSecureTextEntry = true
         showHidePassButton.setImage(UIImage(systemName: "eye.slash"), for: .normal)
@@ -47,7 +47,7 @@ class LoginViewController: UIViewController {
         //prevent insertion of a word that is longer than available (by paste operation)
         emailTextField.smartInsertDeleteType = UITextSmartInsertDeleteType.no
         passwordTextField.smartInsertDeleteType = UITextSmartInsertDeleteType.no
-         
+        
         passwordTextField.addTarget(self, action: #selector(LoginViewController.textFieldDidChange(_:)), for: .editingChanged)
         emailTextField.addTarget(self, action: #selector(LoginViewController.textFieldDidChange(_:)), for: .editingChanged)
         
@@ -71,7 +71,7 @@ class LoginViewController: UIViewController {
         guard let userInfo = notification.userInfo else {return}
         guard let keyboardSize = userInfo[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue else {return}
         
-       
+        
         let keyboardFrame = keyboardSize.cgRectValue
         if self.view.frame.origin.y == 0 {
             self.view.frame.origin.y -= (keyboardFrame.height - 100)
@@ -86,9 +86,9 @@ class LoginViewController: UIViewController {
         }
     }
     
-
     
-   //MARK: - Validation
+    
+    //MARK: - Validation
     
     @objc func textFieldDidChange(_ textField: UITextField) {
         
@@ -109,7 +109,6 @@ class LoginViewController: UIViewController {
         if passwordTextField.text!.count >= minLength {
             if Validation.passValidator(passwordTextField.text!) == true {
                 passValid = true
-                
             }
         }
         
@@ -150,13 +149,12 @@ extension LoginViewController: UITextFieldDelegate {
     //hide keyboard by click on "done"/"return" button
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         textField.resignFirstResponder()
-   
+        
         return true
     }
     
     
-    
-    //MARK: - Check email & password for max length & prevent input restricted symbols
+    //MARK: - Check email & password for max length
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
         guard let textFieldText = textField.text, let rangeOfTextToReplace = Range(range, in: textFieldText) else { return false }
         let substringToReplace = textFieldText[rangeOfTextToReplace]
@@ -172,6 +170,7 @@ extension LoginViewController: UITextFieldDelegate {
     }
     
     
+    //MARK: - Prevent input restricted symbols
     func preventInputRestrictedSymbols(_ string: String, _ textField: UITextField) -> Bool {
         switch textField {
         case emailTextField:
@@ -182,11 +181,10 @@ extension LoginViewController: UITextFieldDelegate {
             return false
         }
     }
-        
 }
 
 
-//MARK: - Textfield padding
+//MARK: - Text field padding
 extension UITextField {
     func setLeftPaddingPoints(_ amount:CGFloat){
         let paddingView = UIView(frame: CGRect(x: 0, y: 0, width: amount, height: self.frame.size.height))

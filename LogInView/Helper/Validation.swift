@@ -11,24 +11,24 @@ import UIKit
 class Validation {
     
     static func passValidator(_ pass: String) -> Bool {
-            
-            let special = CharacterSet(charactersIn: "!@#$%^&*()-+")
-            let number = CharacterSet(charactersIn: "0123456789")
-            let upper = CharacterSet(charactersIn: "ABCDEFGHIJKLMNOPQRSTUVWXYZ")
-            let lower = CharacterSet(charactersIn: "abcdefghijklmnopqrstuvwxyz")
-
-            if pass.rangeOfCharacter(from: lower) == nil {
-                return false
-            }
-            if pass.rangeOfCharacter(from: upper) == nil {
-                return false
-            }
-            if pass.rangeOfCharacter(from: number) == nil {
-                return false
-            }
-            if pass.rangeOfCharacter(from: special) == nil {
-                return false
-            }
+        
+        let special = CharacterSet(charactersIn: "!@#$%^&*()-+")
+        let number = CharacterSet(charactersIn: "0123456789")
+        let upper = CharacterSet(charactersIn: "ABCDEFGHIJKLMNOPQRSTUVWXYZ")
+        let lower = CharacterSet(charactersIn: "abcdefghijklmnopqrstuvwxyz")
+        
+        if pass.rangeOfCharacter(from: lower) == nil {
+            return false
+        }
+        if pass.rangeOfCharacter(from: upper) == nil {
+            return false
+        }
+        if pass.rangeOfCharacter(from: number) == nil {
+            return false
+        }
+        if pass.rangeOfCharacter(from: special) == nil {
+            return false
+        }
         
         return true
     }
@@ -38,22 +38,22 @@ class Validation {
         let symbolAt = CharacterSet(charactersIn: "@")
         let point = CharacterSet(charactersIn: ".")
         
-            if email.rangeOfCharacter(from: symbolAt) == nil {
-                return false
-            }
-            if email.rangeOfCharacter(from: point) == nil {
-                return false
-            }
+        if email.rangeOfCharacter(from: symbolAt) == nil {
+            return false
+        }
+        if email.rangeOfCharacter(from: point) == nil {
+            return false
+        }
         
         
-            if let range = email.range(of: ".") {
-                let afterPointChars = email[range.upperBound...]
-                if afterPointChars.count < 2 { return false }
-            }
-            if isRepeatingSymbol(email) == true {
-                return false
-            }
-            return true
+        if let range = email.range(of: ".") {
+            let afterPointChars = email[range.upperBound...]
+            if afterPointChars.count < 2 { return false }
+        }
+        if isRepeatingSymbol(email) == true {
+            return false
+        }
+        return true
     }
     
     
@@ -67,17 +67,5 @@ class Validation {
         return false
     }
     
-    
-    
-//    static func isPointAfterAt(_ email: String) -> Bool {
-////        let range: Range<String.Index> = text.range(of: "b")!
-////        let index: Int = text.distance(from: text.startIndex, to: range.lowerBound)
-//
-//        let startIndex = email.range(of: "@")
-//        print(startIndex)
-//
-//        return false
-//    }
-//
     
 }
