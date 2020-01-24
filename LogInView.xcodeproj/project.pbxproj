@@ -14,6 +14,7 @@
 		84820D6E23CF8A9900A3BF0E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 84820D6C23CF8A9900A3BF0E /* LaunchScreen.storyboard */; };
 		84820D7623D0469700A3BF0E /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84820D7523D0469700A3BF0E /* LoginViewController.swift */; };
 		84AA04E523D1AFF700F3B448 /* Validation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84AA04E423D1AFF700F3B448 /* Validation.swift */; };
+		84FB368323DB700E004A890E /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84FB368223DB700E004A890E /* Extensions.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,6 +27,7 @@
 		84820D6F23CF8A9900A3BF0E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		84820D7523D0469700A3BF0E /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		84AA04E423D1AFF700F3B448 /* Validation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Validation.swift; sourceTree = "<group>"; };
+		84FB368223DB700E004A890E /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -74,6 +76,7 @@
 			isa = PBXGroup;
 			children = (
 				84AA04E423D1AFF700F3B448 /* Validation.swift */,
+				84FB368223DB700E004A890E /* Extensions.swift */,
 			);
 			path = Helper;
 			sourceTree = "<group>";
@@ -149,6 +152,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				84FB368323DB700E004A890E /* Extensions.swift in Sources */,
 				84820D7623D0469700A3BF0E /* LoginViewController.swift in Sources */,
 				84820D6223CF8A9700A3BF0E /* AppDelegate.swift in Sources */,
 				84AA04E523D1AFF700F3B448 /* Validation.swift in Sources */,

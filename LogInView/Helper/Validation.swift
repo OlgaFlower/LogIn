@@ -29,7 +29,6 @@ class Validation {
         if pass.rangeOfCharacter(from: special) == nil {
             return false
         }
-        
         return true
     }
     
@@ -38,21 +37,16 @@ class Validation {
         let symbolAt = CharacterSet(charactersIn: "@")
         let point = CharacterSet(charactersIn: ".")
         
-        if email.rangeOfCharacter(from: symbolAt) == nil {
-            return false
-        }
-        if email.rangeOfCharacter(from: point) == nil {
-            return false
-        }
+        if email.rangeOfCharacter(from: symbolAt) == nil { return false }
         
+        if isRepeatingSymbol(email) == true { return false }
         
-        if let range = email.range(of: ".") {
-            let afterPointChars = email[range.upperBound...]
-            if afterPointChars.count < 2 { return false }
-        }
-        if isRepeatingSymbol(email) == true {
-            return false
-        }
+        if email.rangeOfCharacter(from: point) == nil { return false }
+        
+        if email.indexOf("@")! > email.lastIndex(of: ".")! { return false }
+        
+        if checkAmountOfCharsAfterPoint(email) == false { return false }
+      
         return true
     }
     
@@ -67,5 +61,14 @@ class Validation {
         return false
     }
     
+    
+    static func checkAmountOfCharsAfterPoint(_ email: String) -> Bool {
+        guard let lastSymbol = email.lastIndex(of: ".") else { return false }
+        let startIndex = email.index(lastSymbol, offsetBy: 1)
+        let substring = email[startIndex ..< email.endIndex]
+        if substring.count < 2 { return false }
+        return true
+    }
+
     
 }
