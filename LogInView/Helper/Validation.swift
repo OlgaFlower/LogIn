@@ -39,8 +39,6 @@ class Validation {
         
         if email.rangeOfCharacter(from: symbolAt) == nil { return false }
         
-        if isRepeatingSymbol(email) == true { return false }
-        
         if email.rangeOfCharacter(from: point) == nil { return false }
         
         if email.indexOf("@")! > email.lastIndex(of: ".")! { return false }
@@ -51,15 +49,9 @@ class Validation {
     }
     
     
-    static func isRepeatingSymbol(_ email: String) -> Bool {
-        let temp = email.sorted()
-        for i in 0 ..< temp.count - 1 {
-            if temp[i] == "@", temp[i] == temp[i + 1] {
-                return true
-            }
-        }
-        return false
-    }
+    
+    
+    
     
     
     static func checkAmountOfCharsAfterPoint(_ email: String) -> Bool {

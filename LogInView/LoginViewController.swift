@@ -154,11 +154,17 @@ extension LoginViewController: UITextFieldDelegate {
     }
     
     
-    //MARK: - Check email & password for max length
+    //MARK: - Check email, password for max length & remove restricted symbols
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
         guard let textFieldText = textField.text, let rangeOfTextToReplace = Range(range, in: textFieldText) else { return false }
         let substringToReplace = textFieldText[rangeOfTextToReplace]
         let count = textFieldText.count - substringToReplace.count + string.count
+        
+        guard let email = emailTextField.text else { return false }
+        if email.contains("@") {
+            return preventRepeatingAtSymbol(string)
+        }
+        
         switch textField {
         case emailTextField:
             return count <= 25 && preventInputRestrictedSymbols(string, textField)
@@ -170,8 +176,19 @@ extension LoginViewController: UITextFieldDelegate {
     }
     
     
+
+   func preventRepeatingAtSymbol(_ string: String) -> Bool {
+       // prevent enter more than one "@" in email field
+            return string.rangeOfCharacter(from: CharacterSet(charactersIn: "@" + #",/:;<=>?[\]“‘“"_`{'|}~ "#)) == nil
+    }
+    
+    
+    
+    
     //MARK: - Prevent input restricted symbols
     func preventInputRestrictedSymbols(_ string: String, _ textField: UITextField) -> Bool {
+        
+        
         switch textField {
         case emailTextField:
             return string.rangeOfCharacter(from: CharacterSet(charactersIn: #",/:;<=>?[\]“‘“"_`{'|}~ "#)) == nil
@@ -181,6 +198,15 @@ extension LoginViewController: UITextFieldDelegate {
             return false
         }
     }
+    
+    
+    
+    
+    
+    
+    
+    
+    
 }
 
 
