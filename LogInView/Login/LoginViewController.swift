@@ -159,19 +159,22 @@ extension LoginViewController: UITextFieldDelegate {
         let substringToReplace = textFieldText[rangeOfTextToReplace]
         let count = textFieldText.count - substringToReplace.count + string.count
         
-        guard let email = emailTextField.text else { return false }
-        if email.contains("@") {
-            return preventRepeatingAtSymbol(string)
-        }
-        
         switch textField {
+            
         case emailTextField:
-            return count <= 25 && preventInputRestrictedSymbols(string, textField)
+            guard let email = emailTextField.text else { return false }
+            if email.contains("@") {
+                return preventRepeatingAtSymbol(string)
+            }
+            if email.count <= 25 {
+                return preventInputRestrictedSymbols(string, textField)
+            }
         case passwordTextField:
             return count <= 20 && preventInputRestrictedSymbols(string, textField)
         default:
-            return count <= 1
+            return false
         }
+        return true
     }
     
     
@@ -186,8 +189,6 @@ extension LoginViewController: UITextFieldDelegate {
     
     //MARK: - Prevent input restricted symbols
     func preventInputRestrictedSymbols(_ string: String, _ textField: UITextField) -> Bool {
-        
-        
         switch textField {
         case emailTextField:
             return string.rangeOfCharacter(from: CharacterSet(charactersIn: restrictedSymbols)) == nil
@@ -197,13 +198,6 @@ extension LoginViewController: UITextFieldDelegate {
             return false
         }
     }
-    
-    
-    
-    
-    
-    
-    
     
     
 }
