@@ -16,8 +16,7 @@ class LoginViewController: UIViewController {
     @IBOutlet weak var showHidePassButton: UIButton!
     
     var passIsHidden = true
-    var password: String?
-    var email: String?
+    let restrictedSymbols = #",/:;<=>?[\]“‘“"_`{'|}~ "#
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -179,7 +178,7 @@ extension LoginViewController: UITextFieldDelegate {
 
    func preventRepeatingAtSymbol(_ string: String) -> Bool {
        // prevent enter more than one "@" in email field
-            return string.rangeOfCharacter(from: CharacterSet(charactersIn: "@" + #",/:;<=>?[\]“‘“"_`{'|}~ "#)) == nil
+    return string.rangeOfCharacter(from: CharacterSet(charactersIn: "@" + restrictedSymbols)) == nil
     }
     
     
@@ -191,9 +190,9 @@ extension LoginViewController: UITextFieldDelegate {
         
         switch textField {
         case emailTextField:
-            return string.rangeOfCharacter(from: CharacterSet(charactersIn: #",/:;<=>?[\]“‘“"_`{'|}~ "#)) == nil
+            return string.rangeOfCharacter(from: CharacterSet(charactersIn: restrictedSymbols)) == nil
         case passwordTextField:
-            return string.rangeOfCharacter(from: CharacterSet(charactersIn: #",./:;<=>?[\]“‘“"_`{'|}~ "#)) == nil
+            return string.rangeOfCharacter(from: CharacterSet(charactersIn: "." + restrictedSymbols)) == nil
         default:
             return false
         }
